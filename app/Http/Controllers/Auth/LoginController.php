@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Traits\ThirdLoginHelper;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -18,14 +21,17 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers,ThirdLoginHelper;
+//    use VerifiesUsers,SocialiteHelper,AuthenticatesAndRegistersUsers, ThrottlesLogins;zz
 
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
+    //第三方登录
+    protected $oauthDrivers = ['github' => 'github', 'wechat' => 'weixin'];
 
     /**
      * Create a new controller instance.
@@ -36,4 +42,11 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function UserCreate($data){
+        return User::create($data);
+    }
+
+
+
+
 }

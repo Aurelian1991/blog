@@ -177,6 +177,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Overtrue\LaravelSocialite\ServiceProvider::class,//第三方登录
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,//ide
+        Barryvdh\Debugbar\ServiceProvider::class,
+
     ],
 
     /*
@@ -225,6 +229,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Socialite' => Overtrue\LaravelSocialite\Socialite::class,
+        'Debugbar' => Barryvdh\Debugbar\Facades::class,
 
     ],
 
