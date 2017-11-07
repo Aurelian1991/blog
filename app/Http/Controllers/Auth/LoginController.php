@@ -29,6 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
+    
     protected $redirectTo = '/';
     //第三方登录
     protected $oauthDrivers = ['github' => 'github', 'wechat' => 'weixin'];

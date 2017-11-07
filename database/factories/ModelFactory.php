@@ -22,3 +22,11 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+$factory->define(App\Models\Tag::class, function (Faker\Generator $faker) {
+//    static $password;
+
+    return [
+        'id'=>$faker->numberBetween($min = 1000, $max = 9000),
+        'name' => $faker->word,
+    ];
+});

@@ -24,5 +24,6 @@ Route::get('/login/callback', 'auth\LoginController@handleProviderCallback');
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['namespace' => 'Home'], function(){
     Route::get('/', 'TopicsController@index');
-    // 控制器在 "App\Http\Controllers\Admin" 命名空间下
+    Route::get('/topics/create', 'TopicsController@create');
+    Route::post('/Upload/pictures', 'UploadController@once_image');
 });
