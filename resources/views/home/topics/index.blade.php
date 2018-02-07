@@ -1,12 +1,13 @@
 @extends('layouts.home')
 @section('content')
 <div class="wrap">
+    @inject('tagsModel', 'App\Models\Tag')
     <div class="container tag__container">
         <div class="row">
             <div class="col-xs-12 col-md-9 main">
                 {{--<section class="tag-info tag__info">--}}
                 {{--</section>--}}
-                <ul class="nav nav-tabs mb10 mt30 visible-xs">
+                {{--  <ul class="nav nav-tabs mb10 mt30 visible-xs">
                     <li class="active"><a href="/questions">最新</a>
                     </li>
                     <li><a href="/questions/hottest">热门</a></li>
@@ -16,7 +17,8 @@
                     <li class="active"><a href="/questions">最新</a>
                     </li>
                     <li><a href="/questions/hottest">热门</a></li>
-                </ul>
+                </ul>  --}}
+                @foreach ($topics as $topic)
                 <div class="stream-list question-stream">
                     {{--<a class="btn btn-default active" href="/t/php?type=newest" role="button">时间</a>--}}
                     {{--<a class="btn btn-default" href="/t/php?type=votes" role="button">得票数</a>--}}
@@ -40,34 +42,32 @@
                         <div class="summary">
                             <ul class="author list-inline">
                                 <li>
-                                    <a href="/u/weidaohuanbucuoo">味道还不错哦</a>
+                                    <a href="/u/weidaohuanbucuoo">{{$topic->user['name']}}</a>
                                     <span class="split"></span>
-                                    <a href="/q/1010000010713682/a-1020000011089971">1 天前发布</a>
+                                    <a href="/q/1010000010713682/a-1020000011089971">{{$topic->updated_at??$topic->created_at}}</a>
                                 </li>
                             </ul>
-                            <h2 class="title"><a href="/q/1010000010713682">客户端直接显示id不是一种好方案，譬如/article/2，这样的话，爬虫从1-10000就可以爬取所有文章，应该hash一下</a>
+                            <h2 class="title"><a href="{{url('topics/'.$topic->id)}}" target="_blank">{{$topic->title}}</a>
                             </h2>
-
+                            @if(!empty($topic->TopicTag))
                             <ul class="taglist--inline ib">
+                                  @foreach ($topic->TopicTag as $tagId)
+                                 
+                                @if(!empty($tagsModel->tagsAll()[$tagId->tag_id]))
                                 <li class="tagPopup"><a class="tag tag-sm" href="/t/php" data-toggle="popover"
-                                                        data-original-title="php" data-id="1040000000089387">php</a>
+                                                        data-original-title="php" data-id="1040000000089387"> {{$tagsModel->tagsAll()[$tagId->tag_id]}}</a>
                                 </li>
-                                <li class="tagPopup"><a class="tag tag-sm" href="/t/http" data-toggle="popover"
-                                                        data-original-title="http" data-id="1040000000089706">http</a>
-                                </li>
-                                <li class="tagPopup"><a class="tag tag-sm" href="/t/go%E8%AF%AD%E8%A8%80"
-                                                        data-toggle="popover"
-                                                        data-original-title="go语言" data-id="1040000000630969">go语言</a>
-                                </li>
-                                <li class="tagPopup"><a class="tag tag-sm" href="/t/golang" data-toggle="popover"
-                                                        data-original-title="golang"
-                                                        data-id="1040000000090203">golang</a></li>
+                                @endif
+                                @endforeach
                             </ul>
+                            @endif
                         </div>
                     </section>
                 </div>
+                @endforeach
                 <div class="text-center">
-                    <ul class="pagination">
+                    {{ $topics->links() }}
+                    {{--  <ul class="pagination">
                         <li class="active"><a href="javascript:void(0);">1</a></li>
                         <li><a href="/t/php?type=newest&amp;page=2">2</a></li>
                         <li><a href="/t/php?type=newest&amp;page=3">3</a></li>
@@ -75,7 +75,7 @@
                         <li><a href="/t/php?type=newest&amp;page=5">5</a></li>
                         <li class="disabled"><span>…</span></li>
                         <li class="next"><a rel="next" href="/t/php?type=newest&amp;page=2">下一页</a></li>
-                    </ul>
+                    </ul>  --}}
                 </div>
             </div><!-- /.tab-content -->
             <div class="col-xs-12 col-md-3 side">
@@ -88,7 +88,7 @@
                                         style="width: 255px; height: 213px;"></span></span></span></div>
 
                 <div class="widget-box">
-                    <h2 class="h4 widget-box__title">相关标签</h2>
+                    <h2 class="h4 widget-box__title">标签</h2>
                     <ul class="taglist--inline multi">
                         <li class="tagPopup"><a class="tag" href="/t/javascript" data-toggle="popover"
                                                 data-id="1040000000089436"

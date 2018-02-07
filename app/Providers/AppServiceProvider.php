@@ -18,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*',function($view){
             $categoryModel = new Category();
             $indexNav=$categoryModel->indexNav();
+
             $assign=[
                 'indexNav'=>$indexNav
             ];

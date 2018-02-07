@@ -32,7 +32,7 @@ class LoginController extends Controller
     
     protected $redirectTo = '/';
     //第三方登录
-    protected $oauthDrivers = ['github' => 'github', 'wechat' => 'weixin'];
+    protected $oauthDrivers = ['github' => 'github', 'wechat' => 'weixin', 'qq' => 'qq'];
 
     /**
      * Create a new controller instance.

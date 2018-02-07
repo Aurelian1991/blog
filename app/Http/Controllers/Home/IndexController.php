@@ -9,22 +9,17 @@ use App\Models\Tag;
 use Auth;
 use Faker;
 
-class TopicsController extends Controller
+class IndexController extends Controller
 {
     public function index(Request $request,Topic $topic){
+    
         $topics=$topic->getTopics();
         return view('home.topics.index', compact('topics'));
 
     }
-    public function create()
-    {
-        $user = Auth::user();
-        $tags = factory(\App\Models\Tag::class, 20)->make();
-//        $tags=Tag::all();
+     public function hot(Request $request,Topic $topic){
+        $topics=$topic->getTopicsHot();
+        return view('home.topics.index', compact('topics'));
 
-        return view('home.topics.create_edit', compact('user','tags'));
     }
-
-
-
 }

@@ -11,7 +11,7 @@ class UploadController extends Controller
     private $config = [
         'public' => [
             'disk' => 'public',
-            'path' => 'images',
+            'path' => 'img',
             'show_root' => '/storage/',
             'real_root' => '/storage/app/public/',
             'drive' => 'oss',
@@ -45,21 +45,21 @@ class UploadController extends Controller
 
         switch(isset( $config['drive'] )){
             case 'oss':
-                    $result[0]['src'] = $this->oss($config['show_root'].$file_path,$config['real_root'].$file_path);
+                    $result[0]['url'] = "http://".$this->oss($file_path,$config['real_root'].$file_path);
                 break;
         }
-        return response()->json($result,201);
+        $res['data']=$result;
+        return response()->json($res,201);
     }
 
     protected function oss($remote_path,$local_path,$delete_local_file=false){
-        $remote_root = env('UPLOAD_REMOTE_ROOT');
 
-        $result = \App\Services\OSS::publicUpload(env('OSS_BUCKET'), $remote_root.$remote_path,$local_path);
+        $result = \App\Services\OSS::publicUpload(env('OSS_BUCKET'), $remote_path,$local_path);
         if( $delete_local_file ){
             \Illuminate\Support\Facades\Storage::delete($local_path);
 
         }
-        return env('OSS_HOST').$remote_root.$remote_path;
+        return env('OSS_HOST').'/'.$remote_path;
 
     }
 }

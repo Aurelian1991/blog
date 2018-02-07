@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', '觅闲网'),
 
     /*
     |--------------------------------------------------------------------------
@@ -178,8 +178,9 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Overtrue\LaravelSocialite\ServiceProvider::class,//第三方登录
+        Barryvdh\Debugbar\ServiceProvider::class, //debug
+        Mews\Purifier\PurifierServiceProvider::class,   //HTML 过滤器
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,//ide
-        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -231,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Overtrue\LaravelSocialite\Socialite::class,
         'Debugbar' => Barryvdh\Debugbar\Facades::class,
+        'Purifier' => Mews\Purifier\Facades\Purifier::class,
 
     ],
 

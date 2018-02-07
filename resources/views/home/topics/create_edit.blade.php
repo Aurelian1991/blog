@@ -1,74 +1,75 @@
-@extends('layouts.home')
-@section('css')
-    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/select2-bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrapValidator.min.css') }}" rel="stylesheet">
-    <style type="text/css">
-        .select2-results__option{padding: 6px;
-            user-select: none;
-            -webkit-user-select: none;
-            float: left;}
-        .select2-selection__choice__remove {
-            color: #999;
-            cursor: pointer;
-            display: inline-block;
-            font-weight: bold;
-            margin-right: 2px;
-            float: right;
-        }
-        .select2-results{
+@extends('layouts.home') @section('css')
+<link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/select2-bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('js/bootstrapValidator/css/bootstrapValidator.min.css') }}" rel="stylesheet">
+<style type="text/css">
+	.select2-results__option {
+		padding: 6px;
+		user-select: none;
+		-webkit-user-select: none;
+		float: left;
+	}
 
-        }
-    </style>
-@endsection
-@section('content')
+	.select2-selection__choice__remove {
+		color: #999;
+		cursor: pointer;
+		display: inline-block;
+		font-weight: bold;
+		margin-right: 2px;
+		float: right;
+	}
 
-    <form class="form-horizontal">
-        <div class="form-group ">
-            <label  class="col-sm-2 control-label" for="title">标题</label>
-            <div class="col-sm-8">
-            <input type="text" name="title" class="form-control" id="title" >
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">内容</label>
-            <div class="col-sm-8">
-            <textarea class="form-control" rows="3"></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="label" class="col-sm-2 control-label">标签</label>
-            <div class="col-sm-8">
-                <select class="form-control" multiple="multiple">
-                    @foreach($tags as $k=>$item)
-                    <option value="{{$item['id']}}" class="element">{{$item['name']}}</option>
-                        @endforeach
-                </select>
-            </div>
-        </div>
-        <div class="col-sm-2 col-sm-offset-9">
-            <button   type="submit" class="btn btn-primary">提交</button>
-            <button   type="submit" class="btn btn-primary">保存至草稿</button>
-        </div>
+	.select2-results {}
+</style>
+@endsection @section('content')
+<div class="wrap">
+	<div class="container tag__container">
+		<form id='ajax-form' class="form-horizontal" action="{{url('topics/save')}}" method="post">
+			<div class="form-group ">
+				<label class="col-sm-2 control-label" for="title">标题</label>
+				<div class="col-sm-8">
+					<input type="text" name="title" class="form-control" id="title">
+				</div>
+			</div>
+			{{ csrf_field() }}
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label" for="content" >内容</label>
+				<div class="col-sm-8">
+					<textarea class="form-control" name="content" rows="3" id="content" value=""></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="label" class="col-sm-2 control-label">标签</label>
+				<div class="col-sm-8">
+					<select class="form-control" name="tags[]" multiple="multiple">
+						@foreach($tags as $k=>$item)
+						<option value="{{$item['id']}}" class="element">{{$item['name']}}</option>
+						@endforeach
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="checkbox col-sm-6 col-sm-offset-2">
+					<label>
+						<input type="checkbox" name="is_draft1"  value="1"> 保存至草稿
+					</label>
+				</div>
+			</div>
+			<div class="col-sm-2 col-sm-offset-9">
+				<button type="submit" class="btn ajax-post btn-primary">提交</button>
+				<button type="submit" class="btn ajax-post btn-primary">保存至草稿</button>
+			</div>
 
-    </form>
+		</form>
+	</div>
+</div>
 
 
 
-    @endsection
-@section('js')
-    <script src="{{asset('js/jquery-1.11.3.min.js')}}"></script>
-    <script src="{{asset('js/jquery.form.js')}}"></script>
-    <script src="{{asset('js/tinymce_4.6.7/tinymce/js/tinymce/tinymce.min.js')}}"></script>
-    <script src="{{asset('js/select2.min.js')}}"></script>
-    <script src="{{asset('js/bootstrapValidator.min.js')}}"></script>
-    <script type="text/javascript">
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        function formatState (state) {
+@endsection @section('js') @parent {{--
+<script src="{{asset('js/jquery-1.11.3.min.js')}}"></script> --}}
+<script type="text/javascript">
+	function formatState (state) {
 //            if (!state.id) {
 //                return state.text;
 //            }
@@ -84,9 +85,9 @@
             theme: "bootstrap"
 //            templateSelection: formatState
         });
-    </script>
-    <script>
-        $.fn.select2.defaults.set( "theme", "bootstrap" );
+</script>
+<script>
+	$.fn.select2.defaults.set( "theme", "bootstrap" );
         tinymce.init({
             selector:'textarea',
             language: 'zh_CN',
@@ -109,6 +110,41 @@
             default_link_target: '_blank',
             link_title: false,
             block_formats: '普通标签=p;小标题=h2;',
-        });
-    </script>
-    @endsection
+		});
+		$('.ajax-post').click(function (e) {
+			e.preventDefault();
+		var url=$("#ajax-form").attr('action');
+		var type="post";
+		var options = {
+      		url: url,
+      		type: type,
+      		success: function (data) {
+				   layer.msg(data.msg);
+				  if(data.status){
+					   window.location.href=data.data.url;
+				  }
+				  return false;
+			  },
+			error: function (data) {
+				  var error=data.responseJSON;
+				  var msg="";
+				  for(var key in error){
+					  msg+=key+":"+error[key][0]
+				}
+				layer.msg(msg);
+			  },
+
+		};
+		$('form').bind('form-pre-serialize', function(e) {
+    		tinyMCE.triggerSave();
+		});
+		$("#ajax-form").ajaxSubmit(options);
+		return false;
+    });
+
+
+
+
+
+</script>
+@endsection
