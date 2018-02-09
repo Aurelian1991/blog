@@ -41,6 +41,9 @@ class BlogController extends Controller
         $res = $Blog->save();
         
         if ($res) {
+            $user= Auth::user();
+            $user->blog_id=$Blog->id;
+            $user->save();
             return response()->json(['status' => 1, 'data' => ['url'=>url('topics/create')], 'msg' => '创建成功']);
         } else {
             return response()->json(['status' => 0, 'data' => '', 'msg' => '网络异常']);
