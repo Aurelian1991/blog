@@ -33,7 +33,7 @@ $(document).on("click", ".js-msgGroup", function () {
     $(document).on("click", "[data-action=logout]", function (o) {
         var token = $('meta[name="csrf-token"]').attr('content');
         o.preventDefault(),
-            $.post("logout", { '_token': token }, function (result) {
+            $.post("/logout", { '_token': token }, function (result) {
                 window.location.reload()
             });
         $("#app-growl").append('<div class="alert alert-dark alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>Click the x on the upper right to dismiss this little thing. Or click growl again to show more growls</div>')
