@@ -45,15 +45,30 @@
           <li class="pi">
             <a class="pg" href="{{url('blog/index')}}">专栏</a>
           </li>
+          @if(Auth::guest())
           <li class="pi vm">
-            <a class="pg" href="notifications/index.html">Notifications</a>
+            <a class="pg" href="{{url('login/oauth?'.'driver=github')}}">github登录</a>
           </li>
           <li class="pi vm">
-            <a class="pg" data-action="growl">Growl</a>
+            <a class="pg" data-action="{{url('login/oauth?'.'driver=weixin')}}">微信登陆</a>
           </li>
           <li class="pi vm">
-            <a class="pg" href="login/index.html">Logout</a>
+            <a class="pg" href="{{url('login/oauth?'.'driver=qq')}}">qq登录</a>
           </li>
+          @else
+          <li class="pi vm">
+            <a class="pg" href="#">个人中心</a>
+          </li>
+          <li class="pi vm">
+            <a class="pg" data-action="{{url('logout')}}">退出</a>
+          </li>
+          <li class="pi vm">
+            <a class="pg" href="{{url('topics/create')}}">发表文章</a>
+          </li>
+          
+
+          @endif
+
         </ul>
         <form class="nn acx d-none vt">
           <input class="form-control" type="text" data-action="grow" placeholder="Search">
