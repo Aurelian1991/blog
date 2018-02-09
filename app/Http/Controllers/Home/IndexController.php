@@ -12,9 +12,10 @@ use Faker;
 class IndexController extends Controller
 {
     public function index(Request $request,Topic $topic){
-    
         $topics=$topic->getTopics();
-        return view('home.topics.index', compact('topics'));
+        $TagsModel=new Tag();
+        $AllTags=$TagsModel->tagsAll();
+        return view('home.topics.index', compact('topics', 'AllTags'));
 
     }
      public function hot(Request $request,Topic $topic){

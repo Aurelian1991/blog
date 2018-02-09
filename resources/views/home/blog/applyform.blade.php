@@ -3,10 +3,11 @@
 <style type="text/css">
 </style>
 @endsection
- @section('content')
+ 
+@section('content')
 <div class="wrap">
 	<div class="container tag__container">
-		<form  id="ajax-form" class="form-horizontal" action="{{url('blog/apply')}}" method="post" enctype="multipart/form-data">
+		<form id="ajax-form" class="form-horizontal" action="{{url('blog/apply')}}" method="post" enctype="multipart/form-data">
 			<div class="form-group ">
 				<label class="col-sm-2 control-label" for="title">专栏名称</label>
 				<div class="col-sm-8">
@@ -16,29 +17,25 @@
 			{{ csrf_field() }}
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label">专栏封面</label>
-					<div class="col-sm-8">
+				<div class="col-sm-8">
 					<input type="file" name="cover" class="form-control" id="cover" accept="image/*">
 				</div>
 			</div>
-				<div class="form-group">
+			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label">描述</label>
-					<div class="col-sm-8">
+				<div class="col-sm-8">
 					<input type="textarea" name="descript" class="form-control" id="descript">
 				</div>
 			</div>
 			<div class="col-sm-2 col-sm-offset-9">
-				<button  class="btn btn-primary ajax-post">提交申请</button>
+				<button class="btn btn-primary ajax-post">提交申请</button>
 			</div>
-
 		</form>
 	</div>
 </div>
-
-
-
-@endsection 
-@section('js') 
-@parent 
+@endsection
+ 
+@section('js') @parent
 <script>
 	$('.ajax-post').click(function (e) {
 		var url=$("#ajax-form").attr('action');
@@ -66,7 +63,4 @@
 		return false;
     });
 </script>
-
-
-
 @endsection

@@ -42,7 +42,7 @@
                         <div class="summary">
                             <ul class="author list-inline">
                                 <li>
-                                    <a href="/u/weidaohuanbucuoo">{{$topic->user['name']}}</a>
+                                    <a href="{{url('u/'.$topic->user['id'])}}">{{$topic->user['name']}}</a>
                                     <span class="split"></span>
                                     <a href="/q/1010000010713682/a-1020000011089971">{{$topic->updated_at??$topic->created_at}}</a>
                                 </li>
@@ -79,47 +79,18 @@
                 </div>
             </div><!-- /.tab-content -->
             <div class="col-xs-12 col-md-3 side">
-                <div id="mm_124884735_33830642_120602202" class="mb25"><span
-                            style="overflow: visible; position: relative; display: block; width: 255px; height: 213px; background: none; border: 0px; text-align: left;"><span
-                                style="overflow: hidden; position: absolute; display: block; width: 255px; height: 213px; background: none; border: 0px; text-align: left;"><span
-                                    style="overflow: hidden; position: absolute; display: block; width: 255px; height: 213px; background: none; border: 0px; text-align: left;"><img
-                                        id="ac_cs_mm_124884735_33830642_120602202_1" border="0"
-                                        src="https://afp.alicdn.com/afp-creative/creative/u124884735/876563eaa73b00d988686976ac2059b9.png"
-                                        style="width: 255px; height: 213px;"></span></span></span></div>
+                <div id="" class="mb25"><span
+                {{--  预留位置  --}}
+                </div>
 
                 <div class="widget-box">
                     <h2 class="h4 widget-box__title">标签</h2>
                     <ul class="taglist--inline multi">
+                        @foreach($AllTags as $tag)
                         <li class="tagPopup"><a class="tag" href="/t/javascript" data-toggle="popover"
                                                 data-id="1040000000089436"
-                                                data-original-title="javascript">javascript</a></li>
-                        <li class="tagPopup"><a class="tag" href="/t/mysql" data-toggle="popover"
-                                                data-id="1040000000089439"
-                                                data-original-title="mysql">mysql</a></li>
-                        <li class="tagPopup"><a class="tag" href="/t/laravel" data-toggle="popover"
-                                                data-id="1040000000196640"
-                                                data-original-title="laravel">laravel</a></li>
-                        <li class="tagPopup"><a class="tag" href="/t/java" data-toggle="popover"
-                                                data-id="1040000000089449"
-                                                data-original-title="java">java</a></li>
-                        <li class="tagPopup"><a class="tag" href="/t/html" data-toggle="popover"
-                                                data-id="1040000000089571"
-                                                data-original-title="html">html</a></li>
-                        <li class="tagPopup"><a class="tag" href="/t/linux" data-toggle="popover"
-                                                data-id="1040000000089392"
-                                                data-original-title="linux">linux</a></li>
-                        <li class="tagPopup"><a class="tag" href="/t/python" data-toggle="popover"
-                                                data-id="1040000000089534"
-                                                data-original-title="python">python</a></li>
-                        <li class="tagPopup"><a class="tag" href="/t/thinkphp" data-toggle="popover"
-                                                data-id="1040000000090482"
-                                                data-original-title="thinkphp">thinkphp</a></li>
-                        <li class="tagPopup"><a class="tag" href="/t/html5" data-toggle="popover"
-                                                data-id="1040000000089409"
-                                                data-original-title="html5">html5</a></li>
-                        <li class="tagPopup"><a class="tag" href="/t/nginx" data-toggle="popover"
-                                                data-id="1040000000090145"
-                                                data-original-title="nginx">nginx</a></li>
+                                                data-original-title="javascript">{{$tag}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
 
@@ -138,125 +109,17 @@
                             <a href="/u/postbird" class="ellipsis">Postbird</a>
                             <span class="text-muted pull-right">+187</span>
                         </li>
-                        <li class="text-muted">
-                            <img src="https://sfault-avatar.b0.upaiyun.com/882/953/882953009-599659ae32b38_small"
-                                 class="avatar-24">
-                            <a href="/u/gujiawei" class="ellipsis">JVVV</a>
-                            <span class="text-muted pull-right">+122</span>
-                        </li>
-                        <li class="text-muted">
-                            <img src="https://sfault-avatar.b0.upaiyun.com/330/302/3303024212-5949d911b2948_small"
-                                 class="avatar-24">
-                            <a href="/u/summer1993" class="ellipsis">命中水ヽ</a>
-                            <span class="text-muted pull-right">+100</span>
-                        </li>
-                        <li class="text-muted">
-                            <img src="https://sfault-avatar.b0.upaiyun.com/387/044/3870447111-5673aedad6338_small"
-                                 class="avatar-24">
-                            <a href="/u/justjavac" class="ellipsis">justjavac</a>
-                            <span class="text-muted pull-right">+100</span>
-                        </li>
-                        <li class="text-muted">
-                            <img src="https://static.segmentfault.com/v-59b26b31/global/img/user-32.png"
-                                 class="avatar-24">
-                            <a href="/u/uprogrammer" class="ellipsis">精进吧Aaron</a>
-                            <span class="text-muted pull-right">+99</span>
-                        </li>
-                        <li class="text-muted">
-                            <img src="https://sfault-avatar.b0.upaiyun.com/172/280/1722806306-57ea8a99b1667_small"
-                                 class="avatar-24">
-                            <a href="/u/dryyun" class="ellipsis">dryyun</a>
-                            <span class="text-muted pull-right">+97</span>
-                        </li>
-                        <li class="text-muted">
-                            <img src="https://sfault-avatar.b0.upaiyun.com/482/138/482138281-59ae1cac87af0_small"
-                                 class="avatar-24">
-                            <a href="/u/fqy" class="ellipsis">风兮清扬</a>
-                            <span class="text-muted pull-right">+96</span>
-                        </li>
-                        <li class="text-muted">
-                            <img src="https://sfault-avatar.b0.upaiyun.com/283/817/2838179050-1030000000493539_small"
-                                 class="avatar-24">
-                            <a href="/u/hantianfeng" class="ellipsis">韩天峰</a>
-                            <span class="text-muted pull-right">+91</span>
-                        </li>
-                        <li class="text-muted">
-                            <img src="https://sfault-avatar.b0.upaiyun.com/417/773/417773404-59a19cc559425_small"
-                                 class="avatar-24">
-                            <a href="/u/daitutu" class="ellipsis">呆兔兔</a>
-                            <span class="text-muted pull-right">+88</span>
-                        </li>
-                        <li class="text-muted">
-                            <img src="https://sfault-avatar.b0.upaiyun.com/124/603/124603685-58b90f003e406_small"
-                                 class="avatar-24">
-                            <a href="/u/qzuser_57fb1d5db527e" class="ellipsis">Tony_Zby</a>
-                            <span class="text-muted pull-right">+85</span>
-                        </li>
                     </ol>
                 </div>
 
                 <div class="widget-box widget-taguser">
-                    <h2 class="h4 widget-box__title">标签名人榜</h2>
+                    <h2 class="h4 widget-box__title">名人榜</h2>
                     <ol class="widget-top10">
                         <li class="text-muted">
                             <img src="https://sfault-avatar.b0.upaiyun.com/304/698/3046988269-5644b84c17ed3_small"
                                  class="avatar-24">
                             <a href="/u/youmingdot" class="ellipsis">有明</a>
                             <span class="text-muted pull-right">+10838</span>
-                        </li>
-                        <li class="text-muted">
-                            <img src="https://sfault-avatar.b0.upaiyun.com/324/771/3247715052-56fce46b2ae70_small"
-                                 class="avatar-24">
-                            <a href="/u/lizheming" class="ellipsis">公子</a>
-                            <span class="text-muted pull-right">+9796</span>
-                        </li>
-                        <li class="text-muted">
-                            <img src="https://sfault-avatar.b0.upaiyun.com/427/102/4271029182-55b7a3c57d25b_small"
-                                 class="avatar-24">
-                            <a href="/u/eechen" class="ellipsis">eechen</a>
-                            <span class="text-muted pull-right">+9223</span>
-                        </li>
-                        <li class="text-muted">
-                            <img src="https://sfault-avatar.b0.upaiyun.com/254/315/2543157282-594a1de313f44_small"
-                                 class="avatar-24">
-                            <a href="/u/jellybool" class="ellipsis">JellyBool</a>
-                            <span class="text-muted pull-right">+8810</span>
-                        </li>
-                        <li class="text-muted">
-                            <img src="https://sfault-avatar.b0.upaiyun.com/175/934/175934663-572d654c6f521_small"
-                                 class="avatar-24">
-                            <a href="/u/sushengbuhuo" class="ellipsis">苏生不惑</a>
-                            <span class="text-muted pull-right">+8153</span>
-                        </li>
-                        <li class="text-muted">
-                            <img src="https://sfault-avatar.b0.upaiyun.com/157/842/1578424531-1030000000455562_small"
-                                 class="avatar-24">
-                            <a href="/u/mcfog" class="ellipsis">mcfog</a>
-                            <span class="text-muted pull-right">+6615</span>
-                        </li>
-                        <li class="text-muted">
-                            <img src="https://sfault-avatar.b0.upaiyun.com/387/044/3870447111-5673aedad6338_small"
-                                 class="avatar-24">
-                            <a href="/u/justjavac" class="ellipsis">justjavac</a>
-                            <span class="text-muted pull-right">+6514</span>
-                        </li>
-                        <li class="text-muted">
-                            <img src="https://sfault-avatar.b0.upaiyun.com/289/632/289632912-56dcdd3095831_small"
-                                 class="avatar-24">
-                            <a href="/u/incnick" class="ellipsis">incNick</a>
-                            <span class="text-muted pull-right">+5674</span>
-                        </li>
-                        <li class="text-muted">
-                            <img src="https://sfault-avatar.b0.upaiyun.com/270/943/2709439599-1030000000321731_small"
-                                 class="avatar-24">
-                            <a href="/u/shamiao" class="ellipsis">沙渺</a>
-                            <span class="text-muted pull-right">+5666</span>
-                        </li>
-                        <li class="text-muted">
-                            <img src="https://sfault-avatar.b0.upaiyun.com/192/648/1926483299-1030000000139155_small"
-                                 class="avatar-24">
-                            <a href="/u/johnlui" class="ellipsis">JohnLui</a>
-                            <span class="text-muted pull-right">+5128</span>
                         </li>
                     </ol>
                 </div>

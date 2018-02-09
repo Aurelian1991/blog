@@ -60,5 +60,14 @@ class Topic extends Model
             ->find($id);
         return $topics;
     }
+    public function getBlogArticle($user_id){
+        $topics=$this
+            ->WithoutBlocked()
+            ->Withoutdraft()
+            ->with('user', 'category', 'TopicTag')
+            ->where('user_id',$user_id)
+            ->firstOrFail();
+        return $topics;
+    }
 
 }

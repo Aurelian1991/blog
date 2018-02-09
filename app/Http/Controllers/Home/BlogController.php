@@ -8,18 +8,25 @@ use Auth;
 use Aure\Tools\Upload;
 use App\Http\Requests\PictureUpload;
 use App\Models\Blog;
+use App\Models\Topic;
 
 class BlogController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('CheckBlogAuthor');
+        $this->middleware('CheckBlogAuthor', ['except' => ['index', 'show']]);
     }
+    public function index(){
+        $blogModel=new  Blog();
+        $blogs=$blogModel->list();
+        return view('home.blog.index',compact('blogs'));
+    }
+    
     public function applyform()
     {//未判断已是专栏作者
         return view('home.blog.applyform');
+        
     }
-
     public function apply(PictureUpload $request)
     {
         $Blog = new Blog();
@@ -39,6 +46,14 @@ class BlogController extends Controller
             return response()->json(['status' => 0, 'data' => '', 'msg' => '网络异常']);
         }
 
+    }
+    public function show($name=''){
+        $blogModel = new Blog();
+        $blog = $blogModel->info($name);
+        
+        $TopicModel = new Topic();        
+        $article= $TopicModel->getBlogArticle($blog->user_id);
+        return view('home.blog.show',compact('blog','aritcle'));
     }
 
 }
