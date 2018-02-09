@@ -16,8 +16,8 @@
 //});
 
 Auth::routes();
-Route::get('/login/oauth', 'auth\LoginController@oauth');
-Route::get('/login/callback/driver/{driver}', 'auth\LoginController@handleProviderCallback');
+Route::get('/login/oauth', 'Auth\LoginController@oauth');
+Route::get('/login/callback/driver/{driver}', 'Auth\LoginController@handleProviderCallback');
 
 
 
