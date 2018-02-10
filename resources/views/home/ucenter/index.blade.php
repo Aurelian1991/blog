@@ -1,10 +1,14 @@
 @extends('layouts.home')
 @section('content')
 <div class="by aha ahl">
+
+
+
+{{$blog}}  
   <div class="dp">
     <div class="fj">
       <div class="pz bpi afo">
-        <div class="qf" style="background-image: url({{$blog->cover}});"></div>
+        <div class="qf" style="background-image: url(http://{{$blog->cover}});"></div>
         <div class="qa avz">
           <a href="profile/index.html">
             <img class="bpj" src="{{$blog->user['image_url']}}">
@@ -12,7 +16,7 @@
           <h6 class="qb">
             <a class="boa" href="profile/index.html">{{$blog['name']}}</a>
           </h6>
-          <p class="afo">{{$blog['description']}}</p>
+          <p class="afo">{{$blog->user['name']}}</p>
           <ul class="bpk">
             <li class="bpl">
               <a href="#userModal" class="boa" data-toggle="modal">
@@ -33,22 +37,23 @@
         <div class="qa">
           <h6 class="afh">About <small>· <a href="#">Edit</a></small></h6>
           <ul class="dc axg">
-            <li><span class="axc h ban aff"></span>Went to <a href="#">Oh, Canada</a>
+            {{$blog->description}}
+            {{--  <li><span class="axc h ban aff"></span>来自<a href="javascript:void(0)">{{$blog->user['address']}}</a>
             </li>
-            <li><span class="axc h bnc aff"></span>Became friends with <a href="#">Obama</a>
+            <li><span class="axc h bnc aff"></span>简述 <i>{{$blog->description}}</i>
             </li>
             <li><span class="axc h bfa aff"></span>Worked at <a href="#">Github</a>
             </li>
             <li><span class="axc h bfq aff"></span>Lives in <a href="#">San Francisco, CA</a>
             </li>
             <li><span class="axc h bgz aff"></span>From <a href="#">Seattle, WA</a>
-            </li>
+            </li>  --}}
           </ul>
         </div>
       </div>
       <div class="pz vp vy afo">
         <div class="qa">
-          <h6 class="afh">Photos <small>· <a href="#">Edit</a></small></h6>
+          <h6 class="afh">Photos <small>· <a href="{url('ucenter/edit')}"></a></small></h6>
           <div data-grid="images" data-target-height="150">
             <div style="margin-bottom: 10px; margin-right: 10px; display: inline-block; vertical-align: bottom;">
               <img data-width="640" data-height="640" data-action="zoom" src="assets/img/instagram_5.jpg" style="width: 114px; height: 115px;">
@@ -74,7 +79,7 @@
     </div>
     <div class="fm">
       <ul class="ca bow box afo">
-        <li class="rv b agz">
+        {{--  <li class="rv b agz">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Message">
             <div class="bpt">
@@ -83,7 +88,7 @@
               </button>
             </div>
           </div>
-        </li>
+        </li>  --}}
         <li class="rv b agz">
           <img class="bos vb yb aff" src="assets/img/avatar-dhg.png">
           <div class="rw">
@@ -125,48 +130,6 @@
                 <div class="rw">
                   <strong>Mark Otto: </strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus, tellus
                   ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                </div>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="rv b agz">
-          <img class="bos vb yb aff" src="assets/img/avatar-fat.jpg">
-          <div class="rw">
-            <div class="bpd">
-              <div class="bpb">
-                <small class="acx axc">12 min</small>
-                <h6>Jacob Thornton</h6>
-              </div>
-              <p>
-                Donec id elit non mi porta gravida at eget metus. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cum
-                sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi leo risus, porta
-                ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </p>
-            </div>
-          </div>
-        </li>
-        <li class="rv b agz">
-          <img class="bos vb yb aff" src="assets/img/avatar-mdo.png">
-          <div class="rw">
-            <div class="bpb">
-              <small class="acx axc">34 min</small>
-              <h6>Mark Otto</h6>
-            </div>
-            <p>
-              Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Aenean eu leo quam.
-              Pellentesque ornare sem lacinia quam venenatis vestibulum. Etiam porta sem malesuada magna mollis euismod.
-              Donec sed odio dui.
-            </p>
-            <div class="boy" data-grid="images"><img style="display: inline-block; width: 466px; height: 451px; margin-bottom: 10px; margin-right: 0px; vertical-align: bottom;"
-                data-width="640" data-height="640" data-action="zoom" src="assets/img/instagram_3.jpg"></div>
-            <ul class="bow">
-              <li class="rv">
-                <img class="bos vb yb aff" src="assets/img/avatar-dhg.png">
-                <div class="rw">
-                  <strong>Dave Gamache: </strong> Donec id elit non mi porta gravida at eget metus. Vivamus sagittis lacus
-                  vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla. Praesent
-                  commodo cursus magna, vel scelerisque nisl consectetur et. Sed posuere consectetur est at lobortis.
                 </div>
               </li>
             </ul>

@@ -67,20 +67,11 @@
                 @endforeach
                 <div class="text-center">
                     {{ $topics->links() }}
-                    {{--  <ul class="pagination">
-                        <li class="active"><a href="javascript:void(0);">1</a></li>
-                        <li><a href="/t/php?type=newest&amp;page=2">2</a></li>
-                        <li><a href="/t/php?type=newest&amp;page=3">3</a></li>
-                        <li><a href="/t/php?type=newest&amp;page=4">4</a></li>
-                        <li><a href="/t/php?type=newest&amp;page=5">5</a></li>
-                        <li class="disabled"><span>…</span></li>
-                        <li class="next"><a rel="next" href="/t/php?type=newest&amp;page=2">下一页</a></li>
-                    </ul>  --}}
                 </div>
             </div><!-- /.tab-content -->
             <div class="col-xs-12 col-md-3 side">
                 <div id="" class="mb25"><span
-                {{--  预留位置  --}}
+                
                 </div>
 
                 <div class="widget-box">

@@ -12,35 +12,34 @@
 <div class="by acy adh">
     <div class="ea ea_flex">
         @foreach ($blogs as $blog)
-        <div class="dv">
-            <div class="mu blf abk">
-                <div class="na" style="background-image: url({{$blog->cover}});">
-                </div>
-                <div class="mv arx">
-                    <a href="{{url('blog/'.$blog->slug)}}">
-                        <img class="blg" src="{{$blog->user['image_url']}}">
-                    </a>
-                    <h6 class="mw">
-                        <a class="bjx" href="{{url('blog/'.$blog->slug)}}">{{$blog->name}}</a>
-                    </h6>
-                    <p class="abk">{{$blog->description}}
-                    </p>
-                    <ul class="blh">
-                        <li class="bli">
-                            <a href="#userModal" class="bjx" data-toggle="modal">文章
-                            <h6 class="aal">{{$blog->article_count??0}}</h6>
-                            </a>
-                        </li>
-                        <li class="bli">
-                            <a href="#userModal" class="bjx" data-toggle="modal">
-                                订阅
-                                <h6 class="aal">{{$blog->subscriber_count??0}}</h6>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+      <div class="fj">
+        <div class="pz bpi afo">
+            <div class="qf" style="background-image: url(http://{{$blog->cover}});"></div>
+            <div class="qa avz">
+                <a href="{{url('u/'.$blog->user['id'])}}" target="_blank">
+            <img class="bpj" src="{{$blog->user['image_url']}}">
+          </a>
+                <h6 class="qb">
+                    <a class="boa" href="{{url('u/'.$blog->user['id'])}}">{{$blog->user['name']}}</a>
+                </h6>
+                <p class="afo">{{$blog->name}}</p>
+                <ul class="bpk">
+                    <li class="bpl">
+                        <a href="#userModal" class="boa" data-toggle="modal">
+                订阅
+                <h6 class="aej">{{$blog->subscriber_count}}</h6>
+              </a>
+                    </li>
+                    <li class="bpl">
+                        <a href="#userModal" class="boa" data-toggle="modal">
+                发布
+                <h6 class="aej">{{$blog->article_count}}</h6>
+              </a>
+                    </li>
+                </ul>
             </div>
         </div>
+    </div>
 
         @endforeach
     </div>
